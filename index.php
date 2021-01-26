@@ -12,14 +12,9 @@
 <body>
     <!-- Containern har max bredd 800px -->
     <div id="container">
-        <nav>
-            <!-- Logo och meny finns i nav -->
-            <ul>
-                <a id="current" href="home/">Home</a>
-                <a href="projekt1/">Projekt 1</a>
-                <a href="projekt2/">Projekt 2</a>
-            </ul>
-        </nav>
+        <?php
+        include "navbar.php"
+        ?>
 
         <!-- Artiklar placerar sig snyggt efter varann -->
         <article>
@@ -28,7 +23,7 @@
             <p>Jag ändrar samma paragraf som thesourmango</p>
         </article>
 
-<?php
+        <?php
 print(3 + 6);
 // Uppg 1 - Superglobals
 // phpinfo(); // Sök här efter uppg 1 info
@@ -69,6 +64,23 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"])) {
 
 ?>
 
+        </article>
+
+        <article>
+            <h2>Uppg 4 - Signup formulär</h2>
+            <form action="index.php" method="get">
+                Användarnamn: <input type="text" name="username"><br>
+                E-mail: <input type="text" name="email"><br>
+                <input type="submit" value="Registrera dig!">
+            </form>
+            <?php
+if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
+    $username = $_GET['username'];
+    $email = $_GET['email'];
+    print($username . "<br>");
+    print($email);
+}
+?>
         </article>
 
         <article>
