@@ -1,3 +1,7 @@
+<?php
+session_start();
+include "functions.php" 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +17,8 @@
     <!-- Containern har max bredd 800px -->
     <div id="container">
         <?php
-        include "navbar.php"
-        ?>
+include "navbar.php"
+?>
 
         <!-- Artiklar placerar sig snyggt efter varann -->
         <article>
@@ -75,7 +79,7 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"])) {
             </form>
             <?php
 if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
-    $username = $_GET['username'];
+    $username = test_input($_GET['username']);
     $email = $_GET['email'];
     print($username . "<br>");
     print($email);
@@ -95,6 +99,15 @@ if (isset($_COOKIE["username"])) {
 }
 
 ?>
+        </article>
+
+        <article>
+            <h2>Uppg 6 - PHP-Session</h2>
+            <?php
+        $_SESSION['user'] = "toivo";
+        print("<p>Endast Toivo har tillgång till Dark Web</p>");
+        print("<a href='darkweb.php'>DARK WEB</a><p></p>");
+        ?>
         </article>
 
     </div>
