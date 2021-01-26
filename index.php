@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dennis JS Demo</title>
+    <title>Toivo PHP Demo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,7 +23,7 @@
 
         <!-- Artiklar placerar sig snyggt efter varann -->
         <article>
-            <h1>Projekt1<h1>
+            <h1>Projekt1</h1>
             <h2>Uppg 1</h2>
             <p>Jag ändrar samma paragraf som thesourmango</p>
         </article>
@@ -46,7 +46,7 @@ print("<p>Det är den " . date("d") . "nde dagen idag</p>");
 print("<p>Klockan är " . date("h:i:s") . " just nu</p>");
 print("<p>Det är den " . date("m") . "nde månaden idag</p>");
 // TODO: Skapa en array av månaderna och välj den nuvarande
-$manader = array("Januari", "Februari", "Mars");
+$manader = array("Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
 $manad = date("m");
 $manadInt = (int) $manad;
 print("<p>På svenska heter den månaden: " . $manader[$manadInt - 1]);
@@ -54,18 +54,35 @@ print("<p>På svenska heter den månaden: " . $manader[$manadInt - 1]);
         </article>
 
         <article>
-            <h2>Uppg 3<h2>
+            <h2>Uppg 3</h2>
             <form action="index.php" method="get">
                 Dag: <input type="text" name="dag"><br>
                 Månad: <input type="text" name="manad"><br>
                 <input type="submit">
             </form>
             <?php
-            $dag = $_GET["dag"];
-            print("Du vill veta hur länge det är till " . $dag);
+if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"])) {
+    $dag = $_GET["dag"];
+    $manad = $_GET["manad"];
+    print("Du vill veta hur länge det är till " . $dag);
+}
 
-            ?>
+?>
 
+        </article>
+
+        <article>
+            <h2>Uppg 5 - Cookie</h2>
+            <?php
+$cookie_name = "username";
+$cookie_value = "toope";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
+
+if (isset($_COOKIE["username"])) {
+    print("<p>Välkommen " . $cookie_value . "!</p>");
+}
+
+?>
         </article>
 
     </div>
