@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "functions.php" 
+include "functions.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,11 +103,49 @@ if (isset($_COOKIE["username"])) {
 
         <article>
             <h2>Uppg 6 - PHP-Session</h2>
+            <form action="index.php" method="post">
+                Login: <input type="text" name="login"><br>
+                Password: <input type="text" name="password"><br>
+                <input type="submit" value="Logga in">
+            </form>
             <?php
-        $_SESSION['user'] = "toivo";
-        print("<p>Endast Toivo har tillgång till Dark Web</p>");
-        print("<a href='darkweb.php'>DARK WEB</a><p></p>");
-        ?>
+$login = test_input($_REQUEST["login"]);
+$password = test_input($_REQUEST["password"]);
+
+if ($login == "toivo") {
+    $_SESSION['user'] = "toivo";
+    print("<p>Endast Toivo har tillgång till Dark Web</p>");
+    print("<a href='darkweb.php'>DARK WEB</a>");
+} else if ($login == "skurk") {
+    $_SESSION['user'] = "skurk";
+    print("<p>Gå bort! Försök int!</p>");
+    print("<a href='darkweb.php'>DARK WEB</a>");
+} else {
+    print("<p>Inga hemlisar för skurkar</p>");
+}
+
+?>
+        </article>
+
+        <article>
+            <h2>Uppg 7 - Filhanterin</h2>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
+
+        </article>
+
+        <article>
+            <h2>Uppg 8 - Besöksräknare</h2>
+            <?php
+            //TODO: Hitta användaren i $_SERVER och skriv in den
+            //TODO: Formatera tiden i nåt mänskoläsligt format
+$myfile = fopen("besok.log", "a+") or die("Unable to open file!");
+fwrite($myfile, "Toivo var här kl" . time() . "\n");
+fclose($myfile);
+?>
         </article>
 
     </div>
